@@ -1,0 +1,22 @@
+# Godot 4+ 导出和缓存
+.godot/
+export/
+*.export
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 编辑器临时文件
+*.tmp
+*.import/
+*.godot/
+
+# 压缩包
+*.zip
+*.rar
+*.7z
+
+# 本地配置文件（不要上传个人的编辑器设置）
+*.vscode/
+.idea/
