@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="QuestResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://data/resources/quest_resource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "STAGE_12"
+title = "闭店"
+description = "回表线，承接后续剧情。和小葵对话→结算选择影响→存档点。"
+objective_type = 2
+objective_target = "NPC_XIAOKUI"
+objective_count = 1
+next_stage = ""

@@ -11,13 +11,14 @@ extends Node
 ##   这样你一眼能看全节点结构；等熟悉了可以改回在编辑器里摆场景。
 
 signal dialogue_started
-signal dialogue_ended
+signal dialogue_ended(id: String)          # 整条对话链播完时发出，附带“根对话 id”（如 "D01"）
 
 var is_active := false            # 是否有对话正在播放（Player 会据此锁住移动）
 
 const CPS := 45.0                 # 打字速度：每秒 45 个字符
 
 var _box: CanvasLayer
+var _panel: Panel
 var _label: Label
 var _hint: Label
 
@@ -26,6 +27,7 @@ var _lines: Array[String] = []
 var _line_idx := 0
 var _char_idx := 0
 var _timer := 0.0
+var _chain_root_id: String = ""            # 当前对话链的根 id（show_text 时为 ""，不触发完成效果）
 
 func _ready() -> void:
 	_build_box()
@@ -39,6 +41,7 @@ func start(id: String) -> void:
 	if res == null:
 		push_warning("DialogueManager：找不到对话 %s" % id)
 		return
+	_chain_root_id = id
 	_start_chain([res])
 
 func show_text(text: String) -> void:
@@ -46,6 +49,7 @@ func show_text(text: String) -> void:
 		return
 	var res := DialogueResource.new()
 	res.lines = [text]
+	_chain_root_id = ""      # 临时调查文本没有 id，链结束时不会触发“对话完成效果”
 	_start_chain([res])
 
 # ---- 内部流程 ----
@@ -100,19 +104,19 @@ func _process(delta: float) -> void:
 func _end() -> void:
 	is_active = false
 	_box.visible = false
-	dialogue_ended.emit()
+	dialogue_ended.emit(_chain_root_id)
 
 # ---- 用代码搭建对话框 UI ----
+## 不用 anchors_preset 定位，改用“显式坐标 + 顶层对齐”，
+## 无论 Godot 版本 / 是否代码构建，框都 100% 贴屏幕底部，不会再跑到左上角。
 func _build_box() -> void:
 	_box = CanvasLayer.new()
 	_box.layer = 10                      # 保证画在最上层
 
-	var panel := Panel.new()
-	panel.anchors_preset = Control.PRESET_BOTTOM_WIDE
-	panel.offset_left = 6
-	panel.offset_right = -6
-	panel.offset_top = -120
-	panel.offset_bottom = -48
+	_panel = Panel.new()
+	_panel.anchors_preset = Control.PRESET_TOP_LEFT   # 用绝对 position/size 定位
+	_panel.clip_contents = true                      # 兜底：任何情况都不溢出到窗口外
+	_resize_box()                                    # 按当前视口尺寸算好底部位置
 
 	var vbox := VBoxContainer.new()
 	vbox.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -123,7 +127,6 @@ func _build_box() -> void:
 
 	_label = Label.new()
 	_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	_label.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	_label.text = ""
 
 	_hint = Label.new()
@@ -132,6 +135,21 @@ func _build_box() -> void:
 
 	vbox.add_child(_label)
 	vbox.add_child(_hint)
-	panel.add_child(vbox)
-	_box.add_child(panel)
-	add_child(_box)                      # 挂在单例节点下，始终在场景树里
+	_panel.add_child(vbox)
+	_box.add_child(_panel)
+	add_child(_box)                                  # 挂在单例节点下，始终在场景树里
+
+	# 以后若改分辨率 / 窗口大小，框自动重新贴底
+	if get_viewport() != null:
+		get_viewport().connect("size_changed", _resize_box)
+
+## 按当前视口尺寸，把对话框放到屏幕底部、左右留边距。
+## 用绝对坐标，避开锚点失效的问题。
+func _resize_box() -> void:
+	if _panel == null:
+		return
+	var vp := get_viewport().get_visible_rect().size
+	var margin_x := 6.0
+	var box_h := 96.0          # 框高（便签这种短文本足够；更长文本靠 clip 兜底不溢出）
+	_panel.position = Vector2(margin_x, vp.y - box_h - 12.0)
+	_panel.size = Vector2(vp.x - margin_x * 2.0, box_h)

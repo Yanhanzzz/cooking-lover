@@ -77,9 +77,10 @@ func _apply_effect(rule: ErrorRuleResource) -> void:
 		_:
 			pass
 
-	# 首次触发推进剧情阶段（示例：进入“椅子开始重复”阶段）
+	# 首次触发推进剧情阶段：进入“储物间·复制椅子”阶段（STAGE_06）。
+	# 策划案：05 餐桌C 椅子开始重复 → 06 储物间主动复制椅子收集 3 把。
 	if count == 0:
-		QuestManager.advance_to("STAGE_05")
+		QuestManager.advance_to("STAGE_06")
 
 ## 在桌C位置复制出一把椅子（与 world.gd 生成原始椅子用同一套资源/贴图）。
 func _spawn_duplicate() -> void:

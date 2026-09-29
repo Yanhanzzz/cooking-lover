@@ -14,3 +14,9 @@ extends Resource
 @export var lines: Array[String] = []        # 这段对话的全部台词（逐句）
 @export var next_id: String = ""             # 下一段对话 id；空字符串表示结束
 @export var auto_advance: bool = false       # true=自动连续播放；false=每句等玩家按 Z
+
+# ---- “对话完成效果”：整条对话链（含 next_id 接的后续段）播完后，
+#      由 QuestManager 读取并应用到全局状态。用于把对话接进 13 阶段流程。 ----
+@export var complete_flag: String = ""      # 对话播完后置为 true 的 flag（空=不置）
+@export var complete_stage: String = ""     # 对话播完后推进到的阶段 id（空=不推进）
+@export var complete_event: String = ""     # 对话完成后 mark 的事件 id（用于“仅首次生效”防重复触发）

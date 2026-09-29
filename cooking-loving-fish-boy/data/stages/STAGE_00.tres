@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="QuestResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://data/resources/quest_resource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "STAGE_00"
+title = "店门前"
+description = "诺尔第一天报到；学移动和调查。调查招牌或店门，进入小食堂。"
+objective_type = 3
+objective_target = "SIGN_OR_DOOR"
+objective_count = 1
+next_stage = "STAGE_01"

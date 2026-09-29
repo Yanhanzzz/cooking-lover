@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="QuestResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://data/resources/quest_resource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "STAGE_04"
+title = "餐桌B"
+description = "第一次明显异常：盘子变成两个。端给白川，镜头切换后多出一套餐。"
+objective_type = 4
+objective_target = "SERVE_SHIRAKAWA"
+objective_count = 1
+next_stage = "STAGE_05"

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="QuestResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://data/resources/quest_resource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "STAGE_08"
+title = "阁楼"
+description = "剧情揭示与里线入口。调查旧排班簿、裂镜→进入里线。"
+objective_type = 3
+objective_target = "CRACKED_MIRROR"
+objective_count = 1
+next_stage = "STAGE_09"

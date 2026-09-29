@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="InteractableResource" load_steps=3 format=3]
+[gd_resource type="Resource" script_class="InteractableResource" format=3 uid="uid://belk0yh0vuuea"]
 
-[ext_resource type="Script" path="res://data/resources/interactable_resource.gd" id="1"]
+[ext_resource type="Script" uid="uid://b3w8inxkp43je" path="res://data/resources/interactable_resource.gd" id="1"]
 [ext_resource type="Resource" path="res://data/items/chair_extra.tres" id="2"]
 
 [resource]
@@ -10,7 +10,5 @@ display_name = "多余椅子"
 investigate_text = "这把椅子没有放在脚印上。要搬起来吗？"
 interaction_type = 5
 linked_item = ExtResource("2")
-dialogue_id = ""
-state = "NORMAL"
 movable = true
-save_slot_count = 3
+complete_stage = "STAGE_05"

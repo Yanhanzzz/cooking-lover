@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="InteractableResource" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://data/resources/interactable_resource.gd" id="1"]
+[ext_resource type="Resource" path="res://data/items/tofu.tres" id="2"]
+
+[resource]
+script = ExtResource("1")
+id = "COUNTER_TOFU"
+display_name = "豆腐盒"
+investigate_text = "冷藏柜里的嫩豆腐。诺尔取了一块。"
+interaction_type = 1
+linked_item = ExtResource("2")
+state = "NORMAL"
+movable = false
+save_slot_count = 3

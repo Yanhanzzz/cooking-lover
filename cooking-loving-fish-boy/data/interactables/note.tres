@@ -1,15 +1,10 @@
-[gd_resource type="Resource" script_class="InteractableResource" load_steps=2 format=3]
+[gd_resource type="Resource" script_class="InteractableResource" format=3 uid="uid://byonjqt274ae4"]
 
-[ext_resource type="Script" path="res://data/resources/interactable_resource.gd" id="1"]
+[ext_resource type="Script" uid="uid://b3w8inxkp43je" path="res://data/resources/interactable_resource.gd" id="1"]
 
 [resource]
 script = ExtResource("1")
 id = "NOTE_CLUE"
 display_name = "便签"
 investigate_text = "便签上潦草地写着：「别把椅子搬离桌边，它们会……」字迹到这里被擦掉了。"
-interaction_type = 0
-linked_item = null
-dialogue_id = ""
-state = "NORMAL"
-movable = false
-save_slot_count = 3
+complete_stage = ""

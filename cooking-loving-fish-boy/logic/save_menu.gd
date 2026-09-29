@@ -91,16 +91,16 @@ func _do_overwrite() -> void:
 	close()
 
 # ---- 用代码搭建 UI ----
+## 不用 anchors_preset 定位，改用“显式坐标 + 顶层对齐”居中，
+## 和 DialogueManager 同样的稳妥做法，避免锚点失效跑到左上角。
 func _build() -> void:
 	_box = CanvasLayer.new()
 	_box.layer = 20                      # 比对话框(layer 10)更高，盖在最上层
 	_panel = Panel.new()
-	_panel.anchors_preset = Control.PRESET_CENTER
-	_panel.custom_minimum_size = Vector2(420, 280)
-	_panel.offset_left = -210
-	_panel.offset_right = 210
-	_panel.offset_top = -140
-	_panel.offset_bottom = 140
+	_panel.anchors_preset = Control.PRESET_TOP_LEFT   # 用绝对 position/size 定位
+	_panel.clip_contents = true                      # 兜底：内容再多也不溢出面板
+	_resize_panel()
+
 	var vbox := VBoxContainer.new()
 	vbox.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	vbox.add_theme_constant_override("margin_left", 18)
@@ -117,6 +117,9 @@ func _build() -> void:
 		tex.expand_mode = TextureRect.EXPAND_KEEP_SIZE
 		var lbl := Label.new()
 		lbl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		# 关键：让标签填满 HBox 里纹理之外剩余的宽度。
+		# 否则开了 autowrap 的 Label 在 HBox 里会被算成“最小一字宽”，逐字换行。
+		lbl.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		hb.add_child(tex)
 		hb.add_child(lbl)
 		_slot_texs.append(tex)
@@ -128,6 +131,19 @@ func _build() -> void:
 	_panel.add_child(vbox)
 	_box.add_child(_panel)
 	add_child(_box)
+	# 视口尺寸变化时重新居中
+	if get_viewport() != null:
+		get_viewport().connect("size_changed", _resize_panel)
+
+## 把存档菜单面板放到屏幕正中（用绝对坐标，避开锚点失效）。
+func _resize_panel() -> void:
+	if _panel == null:
+		return
+	var vp := get_viewport().get_visible_rect().size
+	var w := 420.0
+	var h := 280.0
+	_panel.position = Vector2((vp.x - w) / 2.0, (vp.y - h) / 2.0)
+	_panel.size = Vector2(w, h)
 
 ## 刷新每个槽位的显示（头像 + 时间 + 地点）。
 func _refresh() -> void:

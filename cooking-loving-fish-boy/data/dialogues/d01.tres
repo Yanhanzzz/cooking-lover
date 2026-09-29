@@ -9,3 +9,6 @@ speaker = "店长"
 lines = ["店长：欢迎光临。……不对，今天开始该说“辛苦了”。", "诺尔：我是诺尔。今天来报到。"]
 next_id = "D02"
 auto_advance = false
+complete_event = "D01_done"
+complete_flag = "met_shoplady"
+complete_stage = "STAGE_02"

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="InteractableResource" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://data/resources/interactable_resource.gd" id="1"]
+[ext_resource type="Resource" path="res://data/items/scallion.tres" id="2"]
+
+[resource]
+script = ExtResource("1")
+id = "COUNTER_SCALLION"
+display_name = "葱筐"
+investigate_text = "墙角竹筐里是一把小葱。诺尔抓了一把。"
+interaction_type = 1
+linked_item = ExtResource("2")
+state = "NORMAL"
+movable = false
+save_slot_count = 3

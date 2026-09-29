@@ -11,6 +11,18 @@ extends Node
 const ITEM_PATHS := {
 	"CHAIR_EXTRA": "res://data/items/chair_extra.tres",
 	"NOTE_CLUE":   "res://data/items/note_clue.tres",
+	# —— 第一关真实物品（按策划案 3.x 接入）——
+	"APRON":          "res://data/items/apron.tres",
+	"ATTIC_KEY":      "res://data/items/attic_key.tres",
+	"CHAIR_SHADOW_1": "res://data/items/chair_shadow_1.tres",
+	"CHAIR_SHADOW_2": "res://data/items/chair_shadow_2.tres",
+	"RULE_SHARD":     "res://data/items/rule_shard.tres",
+	"ERROR_SHARD":    "res://data/items/error_shard.tres",
+	# —— 做饭小游戏（STAGE_03 后厨）——
+	"BOWL":          "res://data/items/bowl.tres",
+	"TOFU":          "res://data/items/tofu.tres",
+	"SCALLION":      "res://data/items/scallion.tres",
+	"MISO_SOUP":     "res://data/items/miso_soup.tres",
 }
 
 func get_item(id: String) -> ItemResource:

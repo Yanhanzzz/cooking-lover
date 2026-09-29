@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="QuestResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://data/resources/quest_resource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "STAGE_11"
+title = "里线逃生"
+description = "清理者追逐。沿错位门和捷径逃到洗手间镜子。"
+objective_type = 0
+objective_target = "ESCAPE_MIRROR"
+objective_count = 1
+next_stage = "STAGE_12"

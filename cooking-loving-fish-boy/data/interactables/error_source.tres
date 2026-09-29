@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="InteractableResource" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://data/resources/interactable_resource.gd" id="1"]
+[ext_resource type="Resource" path="res://data/items/error_shard.tres" id="2"]
+
+[resource]
+script = ExtResource("1")
+id = "ERROR_SOURCE"
+display_name = "错误源·第三把椅子"
+investigate_text = "桌下浮现的黑色线团，凝成“第三把椅子”的形状。\n（临时：直接取得“错误碎片”。后续将接入“修复/保留”选择。）"
+interaction_type = 1
+linked_item = ExtResource("2")
+dialogue_id = ""
+state = "NORMAL"
+movable = false
+save_slot_count = 3
+complete_stage = ""

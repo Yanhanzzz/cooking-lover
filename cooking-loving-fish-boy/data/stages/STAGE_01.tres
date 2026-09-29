@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="QuestResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://data/resources/quest_resource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "STAGE_01"
+title = "餐桌区"
+description = "认识店长、小葵、厨师、白川。与店长对话后获得「去员工室换衣」目标。"
+objective_type = 2
+objective_target = "NPC_SHOPLADY"
+objective_count = 1
+next_stage = "STAGE_02"

@@ -4,12 +4,24 @@
 [ext_resource type="PackedScene" uid="uid://dw20h528ddcfo" path="res://scenes/player.tscn" id="2"]
 [ext_resource type="Texture2D" uid="uid://cdy8syvuqm3jo" path="res://assets/tilemap/tilemap.png" id="2_4wyf3"]
 [ext_resource type="PackedScene" path="res://scenes/prop.tscn" id="4_qfnet"]
-[ext_resource type="Resource" path="res://data/interactables/chair_extra.tres" id="5_i7141"]
+[ext_resource type="Resource" uid="uid://belk0yh0vuuea" path="res://data/interactables/chair_extra.tres" id="5_i7141"]
 [ext_resource type="Texture2D" uid="uid://cu0stxhf3t1rh" path="res://assets/props/chair_placeholder.png" id="6_4mrxx"]
-[ext_resource type="Resource" path="res://data/interactables/note.tres" id="7_w7kh3"]
+[ext_resource type="Resource" uid="uid://byonjqt274ae4" path="res://data/interactables/note.tres" id="7_w7kh3"]
 [ext_resource type="Texture2D" uid="uid://d2t45m2hqn4vl" path="res://assets/props/note_placeholder.png" id="8_e3hyu"]
 [ext_resource type="Resource" path="res://data/interactables/cashier.tres" id="9_q5onr"]
 [ext_resource type="Texture2D" uid="uid://d31m8vdb60qxy" path="res://assets/props/cashier_placeholder.png" id="10_jhx03"]
+[ext_resource type="Resource" path="res://data/interactables/npc_shoplady.tres" id="11_npc1"]
+[ext_resource type="Texture2D" uid="uid://cssarqoolnwjc" path="res://assets/character/placeholder_player.png" id="12_plyr"]
+[ext_resource type="Resource" path="res://data/interactables/cabinet_apron.tres" id="13_cab"]
+[ext_resource type="Resource" path="res://data/interactables/tower_key.tres" id="14_tkey"]
+[ext_resource type="Resource" path="res://data/interactables/cooking_station.tres" id="20_cs"]
+[ext_resource type="Texture2D" uid="uid://b7lvptfh8oy0s" path="res://assets/props/bowl_placeholder.png" id="21_bowl"]
+[ext_resource type="Resource" path="res://data/interactables/counter_bowl.tres" id="22_cbowl"]
+[ext_resource type="Texture2D" uid="uid://d1x61r8o7bact" path="res://assets/props/tofu_placeholder.png" id="23_tofu"]
+[ext_resource type="Resource" path="res://data/interactables/counter_tofu.tres" id="24_ctofu"]
+[ext_resource type="Texture2D" uid="uid://cr3x83vnejsrj" path="res://assets/props/scallion_placeholder.png" id="25_scallion"]
+[ext_resource type="Resource" path="res://data/interactables/counter_scallion.tres" id="26_cscallion"]
+[ext_resource type="Texture2D" uid="uid://dxq52bpj7woc7" path="res://assets/props/cooking_station_placeholder.png" id="27_csimg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4wyf3"]
 texture = ExtResource("2_4wyf3")
@@ -504,6 +516,12 @@ separation = Vector2i(1, 1)
 [sub_resource type="TileSet" id="TileSet_rwgxs"]
 sources/0 = SubResource("TileSetAtlasSource_4wyf3")
 
+[sub_resource type="Resource" id="Resource_oo54l"]
+metadata/__load_path__ = "res://assets/props/apron_placeholder.png"
+
+[sub_resource type="Resource" id="Resource_kpybi"]
+metadata/__load_path__ = "res://assets/props/key_placeholder.png"
+
 [node name="World" type="Node2D" unique_id=1036239251]
 script = ExtResource("1")
 
@@ -530,3 +548,45 @@ z_index = 2
 position = Vector2(43, 230)
 resource = ExtResource("9_q5onr")
 sprite_texture = ExtResource("10_jhx03")
+
+[node name="店长NPC" parent="." unique_id=911223344 instance=ExtResource("4_qfnet")]
+z_index = 2
+position = Vector2(42, 144)
+resource = ExtResource("11_npc1")
+sprite_texture = ExtResource("12_plyr")
+
+[node name="柜子_占位" parent="." unique_id=900001 instance=ExtResource("4_qfnet")]
+z_index = 2
+position = Vector2(360, 116)
+resource = ExtResource("13_cab")
+sprite_texture = SubResource("Resource_oo54l")
+
+[node name="椅子塔钥匙_占位" parent="." unique_id=900002 instance=ExtResource("4_qfnet")]
+z_index = 2
+position = Vector2(420, 116)
+resource = ExtResource("14_tkey")
+sprite_texture = SubResource("Resource_kpybi")
+
+[node name="碗柜" parent="." unique_id=900003 instance=ExtResource("4_qfnet")]
+z_index = 2
+position = Vector2(81, 36)
+resource = ExtResource("22_cbowl")
+sprite_texture = ExtResource("21_bowl")
+
+[node name="豆腐盒" parent="." unique_id=900004 instance=ExtResource("4_qfnet")]
+z_index = 2
+position = Vector2(145, 36)
+resource = ExtResource("24_ctofu")
+sprite_texture = ExtResource("23_tofu")
+
+[node name="葱筐" parent="." unique_id=900005 instance=ExtResource("4_qfnet")]
+z_index = 2
+position = Vector2(204, 36)
+resource = ExtResource("26_cscallion")
+sprite_texture = ExtResource("25_scallion")
+
+[node name="烹饪台" parent="." unique_id=900006 instance=ExtResource("4_qfnet")]
+z_index = 2
+position = Vector2(21, 36)
+resource = ExtResource("20_cs")
+sprite_texture = ExtResource("27_csimg")

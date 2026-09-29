@@ -1,10 +1,29 @@
 [gd_scene format=3 uid="uid://olurt1gd7ox6"]
 
 [ext_resource type="Script" uid="uid://ccqve4ymlla04" path="res://scenes/underworld.gd" id="1"]
-[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="2_lnt10"]
+[ext_resource type="PackedScene" uid="uid://dw20h528ddcfo" path="res://scenes/player.tscn" id="2_lnt10"]
+[ext_resource type="PackedScene" path="res://scenes/prop.tscn" id="3_prop"]
+[ext_resource type="Resource" path="res://data/interactables/chair_shadow_1.tres" id="4_s1"]
+[ext_resource type="Resource" path="res://data/interactables/chair_shadow_2.tres" id="5_s2"]
+[ext_resource type="Resource" path="res://data/interactables/error_source.tres" id="6_es"]
 
 [node name="Underworld" type="Node2D" unique_id=381898741]
 script = ExtResource("1")
 
 [node name="Player" parent="." unique_id=495553992 instance=ExtResource("2_lnt10")]
 position = Vector2(144, 144)
+
+[node name="椅影1_占位" parent="." unique_id=900003 instance=ExtResource("3_prop")]
+z_index = 2
+position = Vector2(200, 160)
+resource = ExtResource("4_s1")
+
+[node name="椅影2_占位" parent="." unique_id=900004 instance=ExtResource("3_prop")]
+z_index = 2
+position = Vector2(300, 160)
+resource = ExtResource("5_s2")
+
+[node name="错误源_占位" parent="." unique_id=900005 instance=ExtResource("3_prop")]
+z_index = 2
+position = Vector2(400, 240)
+resource = ExtResource("6_es")

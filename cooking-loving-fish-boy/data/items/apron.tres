@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://data/resources/item_resource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "APRON"
+display_name = "见习围裙"
+description = "员工室里诺尔柜中的围裙。换上它，才算正式上岗。"
+category = 4
+stackable = false
+max_stack = 1

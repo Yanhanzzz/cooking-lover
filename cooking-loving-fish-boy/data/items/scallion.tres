@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://data/resources/item_resource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "SCALLION"
+display_name = "葱"
+description = "一把小葱。切段后撒进味噌汤提味。"
+category = 1
+stackable = false
+max_stack = 1

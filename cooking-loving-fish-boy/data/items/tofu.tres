@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://data/resources/item_resource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "TOFU"
+display_name = "豆腐"
+description = "一块嫩豆腐。味噌汤的主料之一。"
+category = 1
+stackable = false
+max_stack = 1

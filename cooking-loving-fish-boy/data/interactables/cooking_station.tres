@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="InteractableResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://data/resources/interactable_resource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "COOKING_STATION"
+display_name = "烹饪台"
+investigate_text = "厨房中央的料理台。把食材按正确顺序摆上托盘，就能做出味噌汤。\n（再按一次 X 开始料理）"
+interaction_type = 4
+minigame_id = "COOKING"
+dialogue_id = ""
+state = "NORMAL"
+movable = false
+save_slot_count = 3

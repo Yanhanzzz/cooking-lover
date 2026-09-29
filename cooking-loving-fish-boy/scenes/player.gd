@@ -16,7 +16,7 @@ extends CharacterBody2D
 
 func _physics_process(_delta: float) -> void:
 	# 对话 / 存档菜单打开时，锁住玩家移动与交互（P4 新增）
-	if DialogueManager.is_active or SaveMenu.is_open:
+	if DialogueManager.is_active or SaveMenu.is_open or (InventoryUI != null and InventoryUI.is_open) or (CookingGame != null and CookingGame.is_open):
 		velocity = Vector2.ZERO
 		move_and_slide()
 		return
@@ -35,7 +35,11 @@ func _physics_process(_delta: float) -> void:
 
 ## 找最近的可交互物或门。交互系统（P4）会在这里继续扩展。
 func _try_interact() -> void:
-	print("[调试] 按下了 X（调查）键")   # 验证 X 是否被识别；确认进门正常后可删掉此行
+	# 0) 正搬着某物件时，按 X 直接对它执行“放下”（不依赖物理重叠判定，
+	#    解决搬起后物件浮在头顶、overlaps_body 检测不到、放不下来的问题）
+	if Interactable.current_carried != null:
+		Interactable.current_carried.interact(self)
+		return
 
 	# 1) 先找“可交互物件”（P4 背包/物件系统会往这个 group 里塞节点）
 	for area in get_tree().get_nodes_in_group("interactable"):
@@ -53,6 +57,8 @@ func _try_interact() -> void:
 		if abs(global_position.x - center.x) <= half.x + 8 and abs(global_position.y - center.y) <= half.y + 8:
 			var target: String = door.get_meta("target", "")
 			if target != "":
+				# 走到里世界门口：推进到“里线”阶段（STAGE_09，对应策划案 09 里线·重复谜题）
+				QuestManager.advance_to("STAGE_09")
 				print("进入场景：", target)
 				get_tree().change_scene_to_file(target)
 				return

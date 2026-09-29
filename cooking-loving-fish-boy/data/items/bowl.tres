@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://data/resources/item_resource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "BOWL"
+display_name = "碗"
+description = "干净的汤碗。做味噌汤要先把它摆上托盘。"
+category = 1
+stackable = false
+max_stack = 1

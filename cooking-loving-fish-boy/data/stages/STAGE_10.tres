@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="QuestResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://data/resources/quest_resource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "STAGE_10"
+title = "错误源"
+description = "第一次处理BUG的选择：修复/保留（放大暂时锁定）。"
+objective_type = 4
+objective_target = "CHOICE_BUG"
+objective_count = 1
+next_stage = "STAGE_11"

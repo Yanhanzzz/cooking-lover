@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="QuestResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://data/resources/quest_resource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "STAGE_03"
+title = "后厨"
+description = "第一份料理教学：拿碗/豆腐/葱，做味噌汤，配餐。"
+objective_type = 4
+objective_target = "COOK_SOUP"
+objective_count = 1
+next_stage = "STAGE_04"

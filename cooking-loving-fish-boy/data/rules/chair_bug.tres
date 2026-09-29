@@ -12,6 +12,6 @@ target_id = "CHAIR_EXTRA"
 distance = 2
 effect = 0
 spawn_id = "CHAIR_EXTRA"
-max_triggers = -1
+max_triggers = 3
 state = "ACTIVE"
 repair_flag = "CHAIR_BUG_REPAIRED"

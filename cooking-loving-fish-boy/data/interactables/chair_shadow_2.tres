@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="InteractableResource" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://data/resources/interactable_resource.gd" id="1"]
+[ext_resource type="Resource" path="res://data/items/chair_shadow_2.tres" id="2"]
+
+[resource]
+script = ExtResource("1")
+id = "CHAIR_SHADOW_PICKUP_2"
+display_name = "无影椅②"
+investigate_text = "（B3）离门最远、没有影子的椅影。另一把碰到会消散。"
+interaction_type = 1
+linked_item = ExtResource("2")
+dialogue_id = ""
+state = "NORMAL"
+movable = false
+save_slot_count = 3
+complete_stage = ""

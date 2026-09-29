@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="QuestResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://data/resources/quest_resource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "STAGE_07"
+title = "储物间·取钥匙"
+description = "叠椅子取高处钥匙。把3把椅子放到叠放点→取得阁楼钥匙。"
+objective_type = 4
+objective_target = "STACK_GET_KEY"
+objective_count = 1
+next_stage = "STAGE_08"

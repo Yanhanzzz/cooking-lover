@@ -15,6 +15,8 @@ enum InteractionType { INVESTIGATE, PICKUP, SAVEPOINT, DOOR, TRIGGER, MOVABLE }
 @export var interaction_type: InteractionType = InteractionType.INVESTIGATE
 @export var linked_item: ItemResource                  # 调查/拾取后给玩家的物品（无则留空）
 @export var dialogue_id: String = ""                   # 关联对话 id（如 "D01"），空则不触发对话
+@export var minigame_id: String = ""                   # 触发型专属：要打开的小游戏 id（如 "COOKING"）。空则按 dialogue_id 走对话
 @export var state: String = "NORMAL"                   # 物件状态枚举，如 NORMAL / MOVED / USED
 @export var movable: bool = false                      # 是否可被玩家搬动（椅子谜题用）
 @export var save_slot_count: int = 3                   # 仅 SAVEPOINT 用：存档槽位数
+@export var complete_stage: String = ""                # 首次调查后推进到的阶段（空=不推进）。如 "STAGE_02"

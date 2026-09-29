@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="QuestResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://data/resources/quest_resource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "STAGE_06"
+title = "储物间·复制椅子"
+description = "核心谜题：主动复制椅子。搬走椅子→规则错误补出新椅子→收集3把。"
+objective_type = 4
+objective_target = "COLLECT_3_CHAIRS"
+objective_count = 3
+next_stage = "STAGE_07"

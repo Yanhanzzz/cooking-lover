@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="QuestResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://data/resources/quest_resource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "STAGE_09"
+title = "里线·重复谜题"
+description = "从重复餐桌取2个椅影→放到空桌旁→显现源头。"
+objective_type = 4
+objective_target = "PLACE_2_SHADOWS"
+objective_count = 2
+next_stage = "STAGE_10"
