@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://d3745qpe6l2l7"]
+
+[ext_resource type="Script" uid="uid://bxt087n5j8ne0" path="res://logic/test_save.gd" id="1_errlg"]
+
+[node name="Test" type="Node2D" unique_id=1803307678]
+script = ExtResource("1_errlg")

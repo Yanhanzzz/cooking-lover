@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="DialogueResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://data/resources/dialogue_resource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "D01"
+speaker = "店长"
+lines = ["店长：欢迎光临。……不对，今天开始该说“辛苦了”。", "诺尔：我是诺尔。今天来报到。"]
+next_id = "D02"
+auto_advance = false

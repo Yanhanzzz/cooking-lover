@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="InteractableResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://data/resources/interactable_resource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "CASHIER"
+display_name = "收银机"
+investigate_text = "老旧的收银机。按 X 可以存档（Z 读取/存，X 覆盖，Esc 关闭）。"
+interaction_type = 2
+linked_item = null
+dialogue_id = ""
+state = "NORMAL"
+movable = false
+save_slot_count = 3

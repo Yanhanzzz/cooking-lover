@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ErrorRuleResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://data/resources/error_rule_resource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "CHAIR_BUG"
+display_name = "复制椅子"
+description = "食堂规则认定这里必须有两把椅子。"
+trigger_condition = 0
+target_id = "CHAIR_EXTRA"
+distance = 2
+effect = 0
+spawn_id = "CHAIR_EXTRA"
+max_triggers = -1
+state = "ACTIVE"
+repair_flag = "CHAIR_BUG_REPAIRED"
