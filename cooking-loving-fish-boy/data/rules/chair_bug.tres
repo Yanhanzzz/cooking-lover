@@ -15,3 +15,5 @@ spawn_id = "CHAIR_EXTRA"
 max_triggers = 3
 state = "ACTIVE"
 repair_flag = "CHAIR_BUG_REPAIRED"
+active_stage = "STAGE_06"
+advance_stage = "STAGE_07"

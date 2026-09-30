@@ -20,3 +20,4 @@ enum InteractionType { INVESTIGATE, PICKUP, SAVEPOINT, DOOR, TRIGGER, MOVABLE }
 @export var movable: bool = false                      # 是否可被玩家搬动（椅子谜题用）
 @export var save_slot_count: int = 3                   # 仅 SAVEPOINT 用：存档槽位数
 @export var complete_stage: String = ""                # 首次调查后推进到的阶段（空=不推进）。如 "STAGE_02"
+@export var required_item: String = ""                  # 端菜/交付型专属：交付后会从背包消耗的物品 id（如 "MISO_SOUP"）。空=不需要物品

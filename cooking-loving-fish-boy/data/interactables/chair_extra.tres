@@ -11,4 +11,4 @@ investigate_text = "这把椅子没有放在脚印上。要搬起来吗？"
 interaction_type = 5
 linked_item = ExtResource("2")
 movable = true
-complete_stage = "STAGE_05"
+complete_stage = ""

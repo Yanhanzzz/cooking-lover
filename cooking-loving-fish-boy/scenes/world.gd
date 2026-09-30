@@ -31,6 +31,11 @@ const DOORS := [
 	{"name": "to_underworld", "target": "res://scenes/underworld.tscn", "rect": Rect2(18*48, 5*48, 2*48, 2*48)},
 ]
 
+# STAGE_05/06 椅子谜题：餐桌C 异常椅出现点 + 储物间(仓库区)矩形。
+# STORAGE_RECT 同时被注入 ErrorRuleManager，用于判定“椅子是否搬进了储物间”。
+const TABLE_C_POS := Vector2(9*48, 4*48)            # 餐桌C（多余椅子出现的位置）
+const STORAGE_RECT := Rect2(13*48, 0, 7*48, 6*48)   # = 仓库 区域（与 REGIONS 里的“仓库”一致）
+
 @onready var tile_layer: TileMapLayer = $TileMapLayer
 
 # P5 阶段目标提示 UI（同时充当“防卡提示”）。P5 后期可改样式 / 挪位置。
@@ -46,6 +51,10 @@ var _debug_layer: CanvasLayer
 var _debug_label: Label
 const _STAGE_ORDER := ["STAGE_00","STAGE_01","STAGE_02","STAGE_03","STAGE_04","STAGE_05","STAGE_06","STAGE_07","STAGE_08","STAGE_09","STAGE_10","STAGE_11","STAGE_12"]
 
+# 防止重复生成额外的椅子 / 重复演出“盘子变两个”异常（阶段可能被调试器反复进入）。
+var _extra_chair_spawned := false
+var _plate_revealed := false
+
 func _ready() -> void:
 	_ensure_tileset()
 	_paint_demo_room()
@@ -58,6 +67,11 @@ func _ready() -> void:
 	QuestManager.advance_to("STAGE_01")
 	_build_stage_hud()
 	_build_debug_stepper()
+	# 异常演出：端菜给白川（STAGE_04→05）后，餐桌B“凭空多出一套餐具”
+	QuestManager.stage_advanced.connect(_on_stage_advanced)
+	# 把“储物间矩形”交给规则引擎，并监听“复制椅子”进度用于 HUD 提示。
+	ErrorRuleManager.storage_rect = STORAGE_RECT
+	ErrorRuleManager.rule_triggered.connect(_on_rule_triggered)
 	print("World 就绪：6 区域 + 1 扇门。交互物请手动在编辑器里摆放 prop.tscn。方向键移动，按 X 调查/进门。")
 
 # ---- 1. 自动建 TileSet（关键：16x16 切片 + 1px 间隔，对应 Kenney 那版瓦片） ----
@@ -227,3 +241,34 @@ func _debug_step(delta: int) -> void:
 	var idx := _STAGE_ORDER.find(GameState.current_stage)
 	idx = clamp(idx + delta, 0, _STAGE_ORDER.size() - 1)
 	QuestManager.advance_to(_STAGE_ORDER[idx])
+
+# ---- 阶段异常演出：端菜给白川（进入 STAGE_05）后，餐桌B 凭空多出一套餐具 + 餐桌C 多出一把椅子 ----
+## 对应策划案 STAGE_04「第一次明显异常：盘子变成两个」与 STAGE_05「椅子开始重复」。
+## 实现：serve 对话播完 → D03 的 complete_stage 把阶段推到 STAGE_05 → 此处
+##   1) 把隐藏的“复制盘”Sprite2D 设为可见（盘子变两个）
+##   2) 在餐桌C 生成一把“多余椅子”，并弹出厨师指示（玩家需把它搬去储物间）
+## 两者都属于“阶段变化触发表现”的轻量写法；用 *_spawned / *_revealed 防重复演出。
+func _on_stage_advanced(_old_stage: String, new_stage: String) -> void:
+	if new_stage == "STAGE_05":
+		if not _plate_revealed and has_node("餐桌B_复制盘"):
+			_plate_revealed = true
+			$餐桌B_复制盘.visible = true
+		if not _extra_chair_spawned:
+			_extra_chair_spawned = true
+			_spawn_extra_chair()
+		DialogueManager.show_text("（桌角多了一套空餐具……厨师：那把多余的椅子，搬去储物间吧。）")
+
+## STAGE_05：在餐桌C 生成“多余椅子”。椅子实例的 _ready 会自动把自己的“家”登记到出生点，
+## 供 ErrorRuleManager 之后计算“被搬离多少格”。搬进储物间后由规则引擎推进到 STAGE_06。
+func _spawn_extra_chair() -> void:
+	ErrorRuleManager.spawn_chair_at(TABLE_C_POS)
+
+## STAGE_06：每次规则复制出一把椅子，刷新“已复制 X/3”进度提示，让玩家知道谜题在推进。
+func _on_rule_triggered(rule_id: String, count: int) -> void:
+	if GameState.current_stage != "STAGE_06" or _obj_hint == null:
+		return
+	var max_n: int = ErrorRuleManager.get_max_triggers(rule_id)
+	if count >= max_n:
+		_obj_hint.text = "椅子已凑够 3 把——异常似乎稳定下来了。"
+	else:
+		_obj_hint.text = "已复制 %d / %d 把椅子（搬走椅子 → 规则补出新椅子）。" % [count, max_n]

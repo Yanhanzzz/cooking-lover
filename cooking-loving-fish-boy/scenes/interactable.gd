@@ -76,9 +76,21 @@ func interact(player: Node) -> void:
 			# 触发型：优先打开“小游戏”（如烹饪台 minigame_id="COOKING"）；
 			# 没配小游戏则按 dialogue_id 启动一段对话（NPC / 事件点用）。
 			# 例如店长 NPC 设 dialogue_id="D01"，按 X 即播放 D01→D02 对话链。
+			#
+			# 端菜/交付型（如白川）：数据里配了 required_item（要消耗的物品 id）。
+			#   - 不在对应阶段 / 背包里没有该物品 → 只提示，不消耗、不对话、不推进
+			#   - 物品齐全 → 先消耗，再播对话；对话播完由 QuestManager 按 complete_stage 推进
 			if resource.minigame_id != "":
 				CookingGame.open()
 			elif resource.dialogue_id != "":
+				if resource.required_item != "":
+					if GameState.current_stage != "STAGE_04":
+						DialogueManager.show_text("现在还不到端菜的时候。")
+						return
+					if not InventoryManager.has(resource.required_item):
+						DialogueManager.show_text("你手上还没有可端的料理（去后厨做一份味噌汤）。")
+						return
+					InventoryManager.remove(resource.required_item)   # 交付后消耗该物品
 				DialogueManager.start(resource.dialogue_id)
 		_:
 			pass

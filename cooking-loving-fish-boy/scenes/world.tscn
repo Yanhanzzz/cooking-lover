@@ -4,8 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://dw20h528ddcfo" path="res://scenes/player.tscn" id="2"]
 [ext_resource type="Texture2D" uid="uid://cdy8syvuqm3jo" path="res://assets/tilemap/tilemap.png" id="2_4wyf3"]
 [ext_resource type="PackedScene" path="res://scenes/prop.tscn" id="4_qfnet"]
-[ext_resource type="Resource" uid="uid://belk0yh0vuuea" path="res://data/interactables/chair_extra.tres" id="5_i7141"]
-[ext_resource type="Texture2D" uid="uid://cu0stxhf3t1rh" path="res://assets/props/chair_placeholder.png" id="6_4mrxx"]
 [ext_resource type="Resource" uid="uid://byonjqt274ae4" path="res://data/interactables/note.tres" id="7_w7kh3"]
 [ext_resource type="Texture2D" uid="uid://d2t45m2hqn4vl" path="res://assets/props/note_placeholder.png" id="8_e3hyu"]
 [ext_resource type="Resource" path="res://data/interactables/cashier.tres" id="9_q5onr"]
@@ -22,6 +20,8 @@
 [ext_resource type="Texture2D" uid="uid://cr3x83vnejsrj" path="res://assets/props/scallion_placeholder.png" id="25_scallion"]
 [ext_resource type="Resource" path="res://data/interactables/counter_scallion.tres" id="26_cscallion"]
 [ext_resource type="Texture2D" uid="uid://dxq52bpj7woc7" path="res://assets/props/cooking_station_placeholder.png" id="27_csimg"]
+[ext_resource type="Resource" path="res://data/interactables/shirakawa.tres" id="28_shk"]
+[ext_resource type="Resource" path="res://data/interactables/plate_b.tres" id="29_plate"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4wyf3"]
 texture = ExtResource("2_4wyf3")
@@ -516,12 +516,6 @@ separation = Vector2i(1, 1)
 [sub_resource type="TileSet" id="TileSet_rwgxs"]
 sources/0 = SubResource("TileSetAtlasSource_4wyf3")
 
-[sub_resource type="Resource" id="Resource_oo54l"]
-metadata/__load_path__ = "res://assets/props/apron_placeholder.png"
-
-[sub_resource type="Resource" id="Resource_kpybi"]
-metadata/__load_path__ = "res://assets/props/key_placeholder.png"
-
 [node name="World" type="Node2D" unique_id=1036239251]
 script = ExtResource("1")
 
@@ -531,21 +525,15 @@ tile_set = SubResource("TileSet_rwgxs")
 [node name="Player" parent="." unique_id=623376787 instance=ExtResource("2")]
 position = Vector2(144, 144)
 
-[node name="椅子" parent="." unique_id=599361536 instance=ExtResource("4_qfnet")]
-z_index = 2
-position = Vector2(148, 224)
-resource = ExtResource("5_i7141")
-sprite_texture = ExtResource("6_4mrxx")
-
 [node name="便签" parent="." unique_id=177449541 instance=ExtResource("4_qfnet")]
 z_index = 2
-position = Vector2(261, 232)
+position = Vector2(119, 232)
 resource = ExtResource("7_w7kh3")
 sprite_texture = ExtResource("8_e3hyu")
 
 [node name="收银机" parent="." unique_id=808187085 instance=ExtResource("4_qfnet")]
 z_index = 2
-position = Vector2(43, 230)
+position = Vector2(-62, 233)
 resource = ExtResource("9_q5onr")
 sprite_texture = ExtResource("10_jhx03")
 
@@ -557,15 +545,13 @@ sprite_texture = ExtResource("12_plyr")
 
 [node name="柜子_占位" parent="." unique_id=900001 instance=ExtResource("4_qfnet")]
 z_index = 2
-position = Vector2(360, 116)
+position = Vector2(412, 48)
 resource = ExtResource("13_cab")
-sprite_texture = SubResource("Resource_oo54l")
 
 [node name="椅子塔钥匙_占位" parent="." unique_id=900002 instance=ExtResource("4_qfnet")]
 z_index = 2
-position = Vector2(420, 116)
+position = Vector2(463, 47)
 resource = ExtResource("14_tkey")
-sprite_texture = SubResource("Resource_kpybi")
 
 [node name="碗柜" parent="." unique_id=900003 instance=ExtResource("4_qfnet")]
 z_index = 2
@@ -590,3 +576,21 @@ z_index = 2
 position = Vector2(21, 36)
 resource = ExtResource("20_cs")
 sprite_texture = ExtResource("27_csimg")
+
+[node name="白川" parent="." unique_id=900007 instance=ExtResource("4_qfnet")]
+z_index = 2
+position = Vector2(357, 150)
+resource = ExtResource("28_shk")
+sprite_texture = ExtResource("12_plyr")
+
+[node name="餐桌B_盘子" parent="." unique_id=900008 instance=ExtResource("4_qfnet")]
+z_index = 2
+position = Vector2(404, 150)
+resource = ExtResource("29_plate")
+sprite_texture = ExtResource("21_bowl")
+
+[node name="餐桌B_复制盘" type="Sprite2D" parent="." unique_id=1013841063]
+visible = false
+z_index = 2
+position = Vector2(332, 224)
+texture = ExtResource("21_bowl")

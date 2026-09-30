@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="InteractableResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://data/resources/interactable_resource.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "PLATE_B"
+display_name = "餐桌B的盘子"
+investigate_text = "白川面前的味噌汤还冒着热气——可桌角不知何时多摆了一套空餐具。你明明只端了一份。"
+interaction_type = 0
+dialogue_id = ""
+minigame_id = ""
+state = "NORMAL"
+movable = false
+save_slot_count = 3
+complete_stage = ""
+required_item = ""

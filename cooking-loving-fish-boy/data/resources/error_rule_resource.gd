@@ -24,4 +24,6 @@ enum Effect { DUPLICATE, APPEAR, DISAPPEAR, MUTATE, TELEPORT }
 @export var spawn_id: String = ""                      # 复制/出现时生成的物件 id
 @export var max_triggers: int = -1                     # 最大触发次数；-1 = 无限（策划案需连搬 3 次）
 @export var state: String = "ACTIVE"                   # 当前状态：ACTIVE / REPAIRED / RETAINED
-@export var repair_flag: String = ""                   # 修复需要的 flag（选“修复它”后置位）
+@export var repair_flag: String = ""
+@export var active_stage: String = ""                      # 仅在该阶段判定此规则（""=任意阶段都生效，如 "STAGE_06"）
+@export var advance_stage: String = ""                     # 触发达上限后推进到的阶段（""=不推进，如 "STAGE_07"）                   # 修复需要的 flag（选“修复它”后置位）

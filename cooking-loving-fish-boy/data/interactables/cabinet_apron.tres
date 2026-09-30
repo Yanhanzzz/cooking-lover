@@ -14,4 +14,4 @@ dialogue_id = ""
 state = "NORMAL"
 movable = false
 save_slot_count = 3
-complete_stage = ""
+complete_stage = "STAGE_03"
